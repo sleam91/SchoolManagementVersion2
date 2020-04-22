@@ -70,7 +70,7 @@ public class ProgramManagement {
         if (name.isEmpty()) {
             ui.outputString("Cancelled, no input detected");
             return null;
-        } else if (daoProgram.findByName(name) != null) {
+        } else if (daoProgram.findByName(name).anyMatch(pr -> pr.getName().equalsIgnoreCase(name))) {
             ui.outputString("A Program with that name already exists, choose another name");
             return add();
         } else if (name.matches("^[0-9]\\d*$")) {
@@ -140,7 +140,7 @@ public class ProgramManagement {
         if (name.isEmpty()) {
             ui.outputString("Cancelled, no input detected");
 
-        } else if (daoProgram.findByName(name) != null) {
+        } else if (daoProgram.findByName(name).anyMatch(pr -> pr.getName().equalsIgnoreCase(name))) {
             ui.outputString("A Program with that name already exists, choose another name");
 
         } else if (name.matches("^[0-9]\\d*$")) {

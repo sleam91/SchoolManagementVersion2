@@ -62,7 +62,7 @@ public class StudentManagement {
         if (name.isEmpty()) {
             ui.outputString("Cancelled, no input detected");
             return null;
-        } else if (daoStudent.findByName(name) != null) {
+        } else if (daoStudent.findByName(name).anyMatch(st -> st.getName().equalsIgnoreCase(name))) {
             ui.outputString("Student with that name already exists, choose another name");
             return add();
         } else if (name.matches("^[0-9]\\d*$")) {
@@ -111,7 +111,7 @@ public class StudentManagement {
         if (name.isEmpty()) {
             ui.outputString("Cancelled, no input detected");
 
-        } else if (daoStudent.findByName(name) != null) {
+        } else if (daoStudent.findByName(name).anyMatch(st -> st.getName().equalsIgnoreCase(name))) {
             ui.outputString("Student with that name already exists, choose another name");
 
         } else if (name.matches("^[0-9]\\d*$")) {
